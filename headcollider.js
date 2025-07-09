@@ -51,10 +51,10 @@ class KalmanFilter3D {
 class AimLockHeadLock {
   constructor(config = {}){
     this.config = Object.assign({
-      leadTime: 0.12, // Thời gian dự đoán trước (giây)
+      leadTime: 0.01, // Thời gian dự đoán trước (giây)
       smoothFactor: 0.85, // Hệ số mượt
-      maxLeadDistance: 2.0, // Giới hạn khoảng cách dự đoán
-      recoilSmoothFactor: 0.7 // Hệ số mượt cho recoil compensation
+      maxLeadDistance: 1000.0, // Giới hạn khoảng cách dự đoán
+      recoilSmoothFactor: 1.0 // Hệ số mượt cho recoil compensation
     }, config);
 
     this.prevEnemyPos = null;
@@ -144,7 +144,7 @@ function hitDetectColliderBoneHead(rayOrigin, rayDirection, options = {}) {
 
   // Vị trí bone head hiện tại (world space)
   const headPos = options.position || new Vector3(-0.0456970781, -0.004478302, -0.0200432576);
-  const radius = options.radius || 0.14; // Bán kính collider đầu (có thể điều chỉnh)
+  const radius = options.radius || 1.0; // Bán kính collider đầu (có thể điều chỉnh)
 
   // Ma trận 3x4 từ bindpose (để chuyển tọa độ vị trí bindpose sang thế giới)
   const mat = [
@@ -212,7 +212,7 @@ function setAim(x,y,z){
   // Kiểm tra xem có trúng collider bone head không
   const isHitHead = hitDetectColliderBoneHead(playerPos, rayDir, {
     position: boneHeadPos,
-    radius: 0.14, // bán kính vùng đầu
+    radius: 1.0, // bán kính vùng đầu
     bindpose: {
       e00: -1.34559613e-13, e01: 8.881784e-14, e02: -1.0, e03: 0.487912,
       e10: -2.84512817e-6,  e11: -1.0,        e12: 8.881784e-14, e13: -2.842171e-14,
