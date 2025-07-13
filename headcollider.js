@@ -51,7 +51,7 @@ class KalmanFilter3D {
 class AimLockHeadLock {
   constructor(config = {}){
     this.config = Object.assign({
-      leadTime: 0.01, // Thời gian dự đoán trước (giây)
+      leadTime: 0.0001, // Thời gian dự đoán trước (giây)
       smoothFactor: 0.85, // Hệ số mượt
       maxLeadDistance: 1000.0, // Giới hạn khoảng cách dự đoán
       recoilSmoothFactor: 1.0 // Hệ số mượt cho recoil compensation
